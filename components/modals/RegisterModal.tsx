@@ -28,7 +28,7 @@ const RegisterModal = () => {
         name,
       });
 
-      // when post is successful..
+      // when post call is successful..
       toast.success('Account created successfully!');
 
       // and sign in the user
@@ -59,22 +59,26 @@ const RegisterModal = () => {
         placeholder='Email'
         value={email}
         onChange={(e) => setEmail(e.target.value)}
+        disabled={isLoading}
       />
       <Input
         placeholder='Name'
         value={name}
         onChange={(e) => setName(e.target.value)}
+        disabled={isLoading}
       />
       <Input
         placeholder='Username'
         value={username}
         onChange={(e) => setUsername(e.target.value)}
+        disabled={isLoading}
       />
       <Input
         placeholder='Password'
         value={password}
         onChange={(e) => setPassword(e.target.value)}
         type='password'
+        disabled={isLoading}
       />
     </div>
   );
