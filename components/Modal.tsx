@@ -47,7 +47,7 @@ const Modal: React.FC<ModalProps> = ({
         <div className='relative my-6 w-full  lg:w-3/6 mx-auto lg:max-w-3xl h-full lg:h-auto'>
           <div className=' h-full lg:h-auto border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-black outline-none focus:outline-none'>
             {/** Header */}
-            <div className='flex items-center justify-between p-10 rounded-t bg-neutral-900'>
+            <div className='flex items-center justify-between p-10 rounded-t bg-black'>
               <h3 className='text-3xl font-semibold text-white'>{title}</h3>
               <button
                 className='p-1 ml-auto border-0 text-white hover:opacity-70 transition'
