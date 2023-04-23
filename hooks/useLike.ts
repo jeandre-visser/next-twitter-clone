@@ -40,7 +40,7 @@ const useLike = ({ postId, userId }: { postId: string; userId?: string }) => {
 
       toast.success('Success');
     } catch (error) {
-      toast.error('Something went wrong');
+      toast.error('Something went wrong!');
     }
   }, [
     currentUser,
