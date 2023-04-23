@@ -6,6 +6,7 @@ import axios from 'axios';
 import toast from 'react-hot-toast';
 
 const useFollow = (userId: string) => {
+  console.log('Here is the ID inside the hook: ', userId);
   const { data: currentUser, mutate: mutateCurrentUser } = useCurrentUser();
   const { mutate: mutateFetchedUser } = useUser(userId);
 

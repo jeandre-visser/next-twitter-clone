@@ -1,6 +1,7 @@
-import serverAuth from '@/libs/serverAuth';
 import { NextApiRequest, NextApiResponse } from 'next';
+
 import prisma from '@/libs/prismadb';
+import serverAuth from '@/libs/serverAuth';
 
 export default async function handler(
   req: NextApiRequest,
@@ -33,6 +34,28 @@ export default async function handler(
 
     if (req.method === 'POST') {
       updatedFollowingIds.push(userId);
+
+      // NOTIFICATION PART START
+      try {
+        await prisma.notification.create({
+          data: {
+            body: 'Someone followed you!',
+            userId,
+          },
+        });
+
+        await prisma.user.update({
+          where: {
+            id: userId,
+          },
+          data: {
+            hasNotification: true,
+          },
+        });
+      } catch (error) {
+        console.log(error);
+      }
+      // NOTIFICATION PART END
     }
 
     if (req.method === 'DELETE') {
