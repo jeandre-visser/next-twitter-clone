@@ -37,6 +37,7 @@ const Avatar: React.FC<AvatarProps> = ({ userId, isLarge, hasBorder }) => {
     `}
     >
       <Image
+        onClick={handleClick}
         fill
         style={{
           objectFit: 'cover',
