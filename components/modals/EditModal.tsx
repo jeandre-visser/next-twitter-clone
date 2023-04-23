@@ -1,11 +1,13 @@
+import axios from 'axios';
+import { useCallback, useEffect, useState } from 'react';
+import { toast } from 'react-hot-toast';
+
 import useCurrentUser from '@/hooks/useCurrentUser';
 import useEditModal from '@/hooks/useEditModal';
 import useUser from '@/hooks/useUser';
-import axios from 'axios';
-import React, { useCallback, useEffect, useState } from 'react';
-import { toast } from 'react-hot-toast';
-import Modal from '../Modal';
+
 import Input from '../Input';
+import Modal from '../Modal';
 import ImageUpload from '../ImageUpload';
 
 const EditModal = () => {
@@ -38,6 +40,7 @@ const EditModal = () => {
   const onSubmit = useCallback(async () => {
     try {
       setIsLoading(true);
+
       await axios.patch('/api/edit', {
         name,
         username,
@@ -45,55 +48,56 @@ const EditModal = () => {
         profileImage,
         coverImage,
       });
-      // On successful update, mutate the user data to update the UI
       mutateFetchedUser();
-      toast.success('Profile updated successfully.');
+
+      toast.success('Updated');
+
       editModal.onClose();
-    } catch (error: any) {
-      toast.error(error.message);
+    } catch (error) {
+      toast.error('Something went wrong');
     } finally {
       setIsLoading(false);
     }
   }, [
+    editModal,
     name,
     username,
     bio,
+    mutateFetchedUser,
     profileImage,
     coverImage,
-    mutateFetchedUser,
-    editModal,
   ]);
 
   const bodyContent = (
     <div className='flex flex-col gap-4'>
       <ImageUpload
-        label='Upload Profile Image'
         value={profileImage}
         disabled={isLoading}
         onChange={(image) => setProfileImage(image)}
+        label='Upload profile image'
       />
       <ImageUpload
-        label='Upload Cover Image'
-        value={profileImage}
+        value={coverImage}
         disabled={isLoading}
         onChange={(image) => setCoverImage(image)}
+        label='Upload cover image'
       />
       <Input
         placeholder='Name'
-        value={name}
         onChange={(e) => setName(e.target.value)}
+        value={name}
         disabled={isLoading}
       />
       <Input
         placeholder='Username'
-        value={username}
         onChange={(e) => setUsername(e.target.value)}
+        value={username}
         disabled={isLoading}
       />
       <Input
         placeholder='Bio'
-        value={bio}
         onChange={(e) => setBio(e.target.value)}
+        value={bio}
         disabled={isLoading}
       />
     </div>
@@ -103,9 +107,9 @@ const EditModal = () => {
     <Modal
       disabled={isLoading}
       isOpen={editModal.isOpen}
-      onClose={editModal.onClose}
-      title='Edit Your Profile'
+      title='Edit your profile'
       actionLabel='Save'
+      onClose={editModal.onClose}
       onSubmit={onSubmit}
       body={bodyContent}
     />
