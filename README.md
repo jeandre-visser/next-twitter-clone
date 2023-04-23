@@ -11,4 +11,5 @@ Features:
 
 ### Quick Glimpse
 
-![Home]()
+![Home](https://github.com/jeandre-visser/next-twitter-clone/blob/main/docs/home.png)
+![Profile](https://github.com/jeandre-visser/next-twitter-clone/blob/main/docs/profile.png)
