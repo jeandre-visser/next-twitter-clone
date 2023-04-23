@@ -1,5 +1,6 @@
-import serverAuth from '@/libs/serverAuth';
 import { NextApiRequest, NextApiResponse } from 'next';
+
+import serverAuth from '@/libs/serverAuth';
 import prisma from '@/libs/prismadb';
 
 export default async function handler(
@@ -7,7 +8,7 @@ export default async function handler(
   res: NextApiResponse
 ) {
   if (req.method !== 'POST' && req.method !== 'GET') {
-    res.status(405).end();
+    return res.status(405).end();
   }
 
   try {
@@ -21,11 +22,14 @@ export default async function handler(
           userId: currentUser.id,
         },
       });
+
       return res.status(200).json(post);
     }
 
     if (req.method === 'GET') {
       const { userId } = req.query;
+
+      console.log({ userId });
 
       let posts;
 

@@ -59,14 +59,14 @@ const PostItem: React.FC<PostItemProps> = ({ userId, data }) => {
               onClick={goToUser}
             >
               {data.user.name}
-              <span
-                className='text-neutral-500 cursor-pointer hover:underline md-block hidden'
-                onClick={goToUser}
-              >
-                @{data.user.username}
-              </span>
-              <span className='text-neutral-500 text-sm'>{createdAt}</span>
             </p>
+            <span
+              className='text-neutral-500 cursor-pointer hover:underline md-block'
+              onClick={goToUser}
+            >
+              @{data.user.username}
+            </span>
+            <span className='text-neutral-500 text-sm'> {createdAt} ago</span>
           </div>
           <div className='text-white mt-1'>
             <p>{data.body}</p>
