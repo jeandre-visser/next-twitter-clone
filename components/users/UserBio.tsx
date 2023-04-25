@@ -17,8 +17,6 @@ const UserBio: React.FC<UserBioProps> = ({ userId }) => {
   const { data: currentUser } = useCurrentUser();
   const { data: fetchedUser } = useUser(userId);
 
-  console.log('userid inside bio: ', userId);
-
   const editModal = useEditModal();
 
   const { isFollowing, toggleFollow } = useFollow(userId);

@@ -12,7 +12,7 @@ export default async function handler(
   }
 
   try {
-    const { postId } = req.body;
+    const postId = req.query.postId as string;
 
     const { currentUser } = await serverAuth(req, res);
 
